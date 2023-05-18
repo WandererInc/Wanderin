@@ -1,19 +1,44 @@
 package org.wanderin;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.wanderin.net.Handle;
+import org.wanderin.utils.Logger;
+import org.wanderin.utils.config.ConfigReader;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class Wanderin {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Just works for you
+        new Logger(1,"Just works on you, works for you");
+        new Logger(1,"应用程序工作目录：",System.getProperty("user.dir"));
+        //读取config.json
+        ConfigReader configReader = new ConfigReader();
+        //就是玩一玩不要介意了啦
+        new Logger(0,"Debug mode is enabled");
+        new Logger(0,"Database Information\n",
+                "===================================================",
+                "\nDatabase address: ", ConfigReader.Database.addr,
+                "\nDatabase port: ", Integer.toString(ConfigReader.Database.port),
+                "\nDatabase username: ", ConfigReader.Database.username,
+                "\nDatabase password: ", ConfigReader.Database.passwd,
+                "\nDatabase name:", ConfigReader.Database.dbname,
+                "\n==================================================="
+        );
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        //启动服务器
+        try {
+            new Logger(1,"Starting server on ", Integer.toString(ConfigReader.PORT));
+            ServerSocket serverSocket = new ServerSocket(ConfigReader.PORT);
+            Socket socket = null;
+            while (true) {
+                socket = serverSocket.accept();
+                Thread thread = new Handle(socket);
+                thread.start();
+            }
+        } catch (IOException e) {
+            new Logger(3,"Can't start server");
         }
     }
 }
