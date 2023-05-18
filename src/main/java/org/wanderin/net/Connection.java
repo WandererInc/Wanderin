@@ -2,6 +2,9 @@ package org.wanderin.net;
 
 import org.wanderin.data.User;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Connection {
@@ -35,4 +38,5 @@ public class Connection {
     public void setLastBiDongTime(Long lastBiDongTime) {
         this.lastBiDongTime = lastBiDongTime;
     }
+
 }

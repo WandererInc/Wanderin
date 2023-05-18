@@ -17,14 +17,14 @@ import java.util.Map;
 import java.util.Objects;
 
 public class ConfigReader {
-    public static int PORT;
-    public static boolean DEBUG;
+    public static int PORT = 8080;
+    public static boolean DEBUG = true;
     public static class Database {
-        public static String addr;
-        public static int port;
-        public static String username;
-        public static String passwd;
-        public static String dbname;
+        public static String addr = "127.0.0.1";
+        public static int port = 3306;
+        public static String username = "root";
+        public static String passwd = "root";
+        public static String dbname = "wanderin";
     }
     static {
         //日你妈了隔壁的我又拉肚子了 2023.5.18 10:31
@@ -39,13 +39,6 @@ public class ConfigReader {
             Database.dbname = (String) config.get("dbName");
         } catch (Exception e) {
             new Logger(2,"Can't read config.json, using default...");
-            PORT = 8800;
-            DEBUG = false;
-            Database.addr = "127.0.0.1";
-            Database.port = 3306;
-            Database.username = "root";
-            Database.passwd = "root";
-            Database.dbname = "wanderin";
         }
     }
 }
