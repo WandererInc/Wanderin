@@ -1,5 +1,6 @@
 package org.wanderin;
 
+import org.wanderin.net.Connection;
 import org.wanderin.net.Handle;
 import org.wanderin.utils.Logger;
 import org.wanderin.utils.config.ConfigReader;
@@ -7,8 +8,11 @@ import org.wanderin.utils.config.ConfigReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
+import java.util.Vector;
 
 public class Wanderin {
+    public static final List<Connection> connections = new Vector<>();
     public static void main(String[] args) {
         // Just works for you
         new Logger(1,"Just works on you, works for you");
