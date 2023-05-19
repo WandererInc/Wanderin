@@ -29,4 +29,9 @@ public class Message {
         msg.put("time", MsgTime.toString());
         return JsonUtils.JSONCreator(msg);
     }
+
+    @Override
+    public String toString() {
+        return String.format("[%s][%s] -> [%s] : %s", (this.MsgTime == null? 0 : this.MsgTime), this.fromUser, this.toUser, this.MsgTxt);
+    }
 }

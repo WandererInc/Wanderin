@@ -2,6 +2,7 @@ package org.wanderin.net;
 
 import org.wanderin.Wanderin;
 import org.wanderin.utils.Logger;
+import org.wanderin.utils.msg.MsgUtils;
 
 import java.io.*;
 import java.net.Socket;
@@ -29,7 +30,11 @@ public class Handle extends Thread {
             );
             String line = null;
             while ((line = reader.readLine()) != null) {
-                System.out.println("[Client Msg]-------------------------->" + line);
+                new Logger(4,"[Client Msg]---------->", line);
+                //社交牛逼可以牛逼到什么程度呢
+
+                //Handle Message
+                System.out.println(MsgUtils.MsgRecv(line));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

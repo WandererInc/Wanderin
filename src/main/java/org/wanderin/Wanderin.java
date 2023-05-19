@@ -42,7 +42,7 @@ public class Wanderin {
                 thread.start();
             }
         } catch (IOException e) {
-            new Logger(3,"Can't start server");
+            new Logger(0,"Can't start server");
         }
     }
 }

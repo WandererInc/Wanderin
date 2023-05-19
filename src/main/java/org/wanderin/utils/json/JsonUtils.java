@@ -1,6 +1,5 @@
 package org.wanderin.utils.json;
 
-import com.google.gson.JsonStreamParser;
 import org.wanderin.utils.Logger;
 
 import java.io.*;
@@ -64,7 +63,7 @@ public class JsonUtils {
                 value = line.split(":")[1].replace("\"", "");
                 value = value.replace(",", "");
                 jsonMap.put(key, value);
-            }
+            } //羡慕那些既是正太又是正太控的孩子
             return jsonMap;
         } catch (Exception e) {
             new Logger(3, "Bad JSON style");
