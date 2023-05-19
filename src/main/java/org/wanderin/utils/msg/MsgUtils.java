@@ -19,12 +19,14 @@ public class MsgUtils {
             new Logger(0, "Sending message to", msg.get("to"), "\nMessage:\n", msg.get("msg"));
             synchronized (Wanderin.connections) {
                 Wanderin.connections.forEach((connection) -> {
-                    if (connection.getUser() != null && connection.getUser().equals(msg.get("to"))) {
+                    new Logger(0, connection.getUser().getUsername());
+                    if (connection.getUser() != null && connection.getUser().getUsername().equals(msg.get("to"))) {
                         try {
                             PrintWriter writer = new PrintWriter(new OutputStreamWriter(connection.getSocket().getOutputStream()));
                             writer.println(JsonUtils.JSONCreator(msg));
                             writer.flush();
-                            writer.close();
+//                            writer.close();
+                            new Logger(0, "Message sent to", msg.get("to"));
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -48,6 +50,7 @@ public class MsgUtils {
             //Add to database
 
             new Logger(0, msg.toString());
+            MsgNotify(msg);
             return msg;
         } catch (Exception e) {
             return null;

@@ -30,14 +30,14 @@ public class Handle extends Thread {
             );
             String line = null;
             while ((line = reader.readLine()) != null) {
-                new Logger(4,"[Client Msg]---------->", line);
+                new Logger(0,"[Client Msg]---------->", line);
                 //社交牛逼可以牛逼到什么程度呢
-
                 //Handle Message ———— 想看小正太撸射
                 MsgUtils.MsgRecv(line);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            new Logger(2,"IOException:", e.getMessage());
+//            e.printStackTrace();
         }
     }
 }
