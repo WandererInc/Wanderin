@@ -33,8 +33,8 @@ public class Handle extends Thread {
                 new Logger(4,"[Client Msg]---------->", line);
                 //社交牛逼可以牛逼到什么程度呢
 
-                //Handle Message
-                System.out.println(MsgUtils.MsgRecv(line));
+                //Handle Message ———— 想看小正太撸射
+                MsgUtils.MsgRecv(line);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

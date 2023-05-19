@@ -20,5 +20,6 @@ public class Test {
 //        System.out.println(new Message("admin", "root", "test").toJSON());
         System.out.println(new Message("admin", "root", "test", 114514L).toJSON());
         System.out.println(MsgUtils.MsgRecv(new Message("admin", "root", "test", 114514L).toJSON()));
+        MsgUtils.MsgNotify(new Message("admin", "root", "test", 114514L).toJSON());
     }
 }

@@ -22,12 +22,20 @@ public class Message {
         this.MsgTime = MsgTime;
     }
     public String toJSON() {
+//        Map<String, String> msg = new HashMap<>();
+//        msg.put("from", fromUser);
+//        msg.put("to", toUser);
+//        msg.put("msg", MsgTxt);
+//        msg.put("time", MsgTime.toString());
+        return JsonUtils.JSONCreator(this.toMap());
+    }
+    public Map<String, String> toMap() {
         Map<String, String> msg = new HashMap<>();
         msg.put("from", fromUser);
         msg.put("to", toUser);
         msg.put("msg", MsgTxt);
         msg.put("time", MsgTime.toString());
-        return JsonUtils.JSONCreator(msg);
+        return msg;
     }
 
     @Override
