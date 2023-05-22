@@ -25,7 +25,6 @@ public class MsgUtils {
                             PrintWriter writer = new PrintWriter(new OutputStreamWriter(connection.getSocket().getOutputStream()));
                             writer.println(JsonUtils.JSONCreator(msg));
                             writer.flush();
-//                            writer.close();
                             new Logger(0, "Message sent to", msg.get("to"));
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -37,6 +36,16 @@ public class MsgUtils {
     }
     public static Message MsgRecv(String json) {
         Map map = JsonUtils.JsonReader(json);
+        try {
+            switch(map.get("type").toString()) {
+                case "dm":
+                    System.out.println("DM"); break;
+                case "setuname":
+                    System.out.println("Set Username: " + map.get("user")); break;
+                default:
+                    System.out.println("Unhandled Packet");
+            }
+        } catch (Exception e) {}
         try {
             var msg = new Message(
                     (String) map.get("from"), (String) map.get("to"), (String) map.get("msg"), Long.valueOf((String) map.get("time"))
